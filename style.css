@@ -1,0 +1,99 @@
+body {
+    margin: 0;
+    height: 100vh;
+    background-color: #0b0a1d; /* Dark space color */
+    /* You can use any space nebula image you like */
+    background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa');
+    background-size: cover;
+    background-position: center;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mind-map-container {
+    position: relative;
+    width: 700px;
+    height: 600px;
+}
+
+.node {
+    position: absolute;
+    background-color: rgba(18, 42, 99, 0.75);
+    border: 1px solid #7df9ff;
+    color: white;
+    font-size: 14px;
+    /* Use clip-path to create the octagon shape */
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+    width: 110px;
+    height: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    box-shadow: 0 0 15px rgba(125, 249, 255, 0.4), inset 0 0 10px rgba(125, 249, 255, 0.3);
+    z-index: 10;
+}
+
+/* Position all the nodes manually */
+.center-node {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#node1 { top: 5%; left: 30%; }
+#node2 { top: 15%; left: 65%; }
+#node3 { top: 40%; left: 80%; }
+#node4 { top: 70%; left: 75%; }
+#node5 { top: 85%; left: 45%; }
+#node6 { top: 75%; left: 10%; }
+#node7 { top: 45%; left: 0%; }
+#node8 { top: 10%; left: 5%; }
+
+
+/* Style for the connecting lines (created by JS) */
+.line {
+    position: absolute;
+    background-color: #7df9ff;
+    height: 2px;
+    transform-origin: 0 0;
+    z-index: 1;
+    opacity: 0.4;
+}
+
+/* --- This is the pulse animation --- */
+.pulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px; /* Initial size */
+    height: 50px; /* Initial size */
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.7);
+    opacity: 0;
+    z-index: 5;
+    /* Apply the animation */
+    animation: pulse-effect 3s infinite;
+}
+
+@keyframes pulse-effect {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 0.6;
+    }
+    80% {
+        /* Expand to cover the map (700px wide) */
+        transform: translate(-50%, -50%) scale(8); 
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
